@@ -59,18 +59,18 @@ def calcintelhex():
     #a = vim.current.line
     start = int(vim.eval("a:firstline"))
     end = int(vim.eval("a:lastline"))
-    #print start, " ", end
+    #print(start, " ", end)
     for line in xrange(start-1, end):
         a = vim.current.buffer[line]
         rec_len_t = len(a)          #Length of Line
         if rec_len_t == 0:
             #cursor_loc = vim.current.window.cursor
-            #print "ERROR:  Empty Line  Line#", cursor_loc[0]
-            print "ERROR:  Empty Line  Line#", line+1
+            #print("ERROR:  Empty Line  Line#", cursor_loc[0])
+            print("ERROR:  Empty Line  Line#", line+1)
             if "1" == vim.eval("g:embed_cs_continue"): continue
             return
         elif a[0] != ':':
-            print "ERROR:  Invalid start of record character => ", a[0], " Line#", line+1
+            print("ERROR:  Invalid start of record character => ", a[0], " Line#", line+1)
             if "1" == vim.eval("g:embed_cs_continue"): continue
             return
         else:
@@ -79,7 +79,7 @@ def calcintelhex():
         rec_len = int(a[1:3], 16)   #Intel Record Length in Bytes
 
         if (rec_len*2 + 9) > rec_len_t:
-            print "ERROR:  Minimum Record Length Failed  Line#", line+1
+            print("ERROR:  Minimum Record Length Failed  Line#", line+1)
             if "1" == vim.eval("g:embed_cs_continue"): continue
             return
 
@@ -107,10 +107,10 @@ def calc_srec_cs():
     rec_len_t = lan(a)
 
     if rec_len_t == 0:
-        print "ERROR: Empty Line"
+        print("ERROR: Empty Line")
         return
     elif a[0] not in ['s', 'S']:
-        print "ERROR:  Invalid start of record character"
+        print("ERROR:  Invalid start of record character")
     else:
         pass
 
@@ -126,7 +126,7 @@ def calc_srec_cs():
         address_bytes = 11-int(rec_type)
         bc = 12-int(rec_type)
     else:
-        print "ERROR: Unknown record type => ", rec_type
+        print("ERROR: Unknown record type => ", rec_type)
         return
 
     byte_count = a[2:4]
