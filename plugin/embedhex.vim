@@ -41,6 +41,11 @@ if !has("python")
     finish
 endif
 
+if (702 > v:version)
+    echo "VIM 7.2 or higher required"
+    finish
+endif
+
 "if &cp || exists("g:loaded_embedhex")
 "    finish
 "endif
